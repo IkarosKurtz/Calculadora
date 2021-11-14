@@ -16,7 +16,8 @@ float resdiv=0;
 
 //? Declaraciones de las funciones, se podria quitar
 int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia(); int combinaciones(); int permutaciones(); int vabsoluto();
-void submenu(); double seno(); double cos(); double tan();
+void submenu(); double seno(); double cos(); double tan(); double cotangente(); double secante(); double cosecante();
+
 
 //! El main
 int main(){ system("cls"); 
@@ -85,7 +86,7 @@ void menu(){
      cout<<"\nEl resultado de la operacion anterior: "<<resultado<<endl;TEXT_COLOR(hConsole, 7);}
      else{TEXT_COLOR(hConsole, 2);
       if (VALID_TOKEN==2){ TEXT_COLOR(hConsole, 2);
-        cout<<"\nEl resultado de la operacion anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
+        cout<<"\nEl resultado de la operacions anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
         else{TEXT_COLOR(hConsole, 2);
         cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}}
 
@@ -93,16 +94,19 @@ void menu(){
 void submenu(){ system("cls");
  TEXT_COLOR(hConsole,9); cout<<"Funciones trigonometricas\n\n";TEXT_COLOR(hConsole,7);
  cout<<"Elejir una de las opciones"<<endl;
- cout<<"1- Funcion seno"<<endl;
- cout<<"2- Funcion coseno"<<endl;
- cout<<"3- Funcion tangente"<<endl;
+ cout<<"1- Funcion Seno"<<endl;
+ cout<<"2- Funcion Coseno"<<endl;
+ cout<<"3- Funcion Tangente"<<endl;
+ cout<<"4- Funcion Cotangente"<<endl;
+ cout<<"5- Funcion Secante"<<endl;
+ cout<<"6- Funcion Cosecante"<<endl;
  if (resultado==0){ TEXT_COLOR(hConsole, 2); cout<<"\nEl resultado anterior es: 0"<<endl; TEXT_COLOR(hConsole, 7);}
  else{
      if (VALID_TOKEN==0){ TEXT_COLOR(hConsole, 2);
      cout<<"\nEl resultado de la operacion anterior: "<<resultado<<endl;TEXT_COLOR(hConsole, 7);}
      else{TEXT_COLOR(hConsole, 2);
       if (VALID_TOKEN==2){ TEXT_COLOR(hConsole, 2);
-        cout<<"\nEl resultado de la operacion anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
+        cout<<"\nEl resultado de la operacions anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
         else{TEXT_COLOR(hConsole, 2);
         cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}
 
@@ -111,15 +115,27 @@ void submenu(){ system("cls");
     {
     case 1:
         seno();
-        cout<<"--->El seno es: "<<res;
+        cout<<"--->El Seno es: "<<res;
         cout<<"\n\n"; system("pause"); main();
     case 2:
         cos();
-        cout<<"--->El seno es: "<<res;
+        cout<<"--->El Coseno es: "<<res;
         cout<<"\n\n"; system("pause"); main();
     case 3:
         tan();
-        cout<<"--->El seno es: "<<res;
+        cout<<"--->La Tangente es: "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    case 4:
+        cotangente();
+        cout<<"--->El Cotangente es: "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    case 5:
+        secante();
+        cout<<"--->El Secante es: "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    case 6:
+        cosecante();
+        cout<<"--->El Cosecante es: "<<res;
         cout<<"\n\n"; system("pause"); main();
     default:
         break;}}
@@ -226,9 +242,10 @@ int xpotencia(){if(res==0 && resultado==0 && resdiv == 0){
         else{
             cout<<"\n\n----->Ingrese los numeros para elevar a la x^n pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
             res=pow(a,b); VALID_TOKEN = 1; return res;}}}
+            
 //*Es la operacion de sacar el seno
 double seno(){if(res==0 && resultado==0 && resdiv == 0){
-    cout<<"\n\n----->Ingrese el numero para sacar el seno: ";cin.ignore(); cin>>a;
+    cout<<"\n\n----->Ingrese el grado para sacar el seno: ";cin.ignore(); cin>>a;
     res=sin(a*pi/180); VALID_TOKEN = 1; return res;}
     else{ TEXT_COLOR(hConsole,12);
     cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
@@ -238,12 +255,12 @@ double seno(){if(res==0 && resultado==0 && resdiv == 0){
             }else{if(VALID_TOKEN == 1){
                 res=sin(res*pi/180); VALID_TOKEN = 1; return res;}}}
         else{
-            cout<<"\n\n----->Ingrese el numero para sacar el seno: ";cin.ignore(); cin>>a;
+            cout<<"\n\n----->Ingrese el grado para sacar el seno: ";cin.ignore(); cin>>a;
             res=sin(a*pi/180); VALID_TOKEN = 1; return res;}}}
 
 //*Es la operacion de sacar el cos
 double cos(){if(res==0 && resultado==0 && resdiv == 0){
-    cout<<"\n\n----->Ingrese el numero para sacar el cos: ";cin.ignore(); cin>>a;
+    cout<<"\n\n----->Ingrese el grado para sacar el cos: ";cin.ignore(); cin>>a;
     res=cos(a*pi/180); VALID_TOKEN = 1; return res;}
     else{ TEXT_COLOR(hConsole,12);
     cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
@@ -253,23 +270,75 @@ double cos(){if(res==0 && resultado==0 && resdiv == 0){
             }else{if(VALID_TOKEN == 1){
                 res=cos(res*pi/180); VALID_TOKEN = 1; return res;}}}
         else{
-            cout<<"\n\n----->Ingrese el numero para sacar el cos: ";cin.ignore(); cin>>a;
+            cout<<"\n\n----->Ingrese el grado para sacar el cos: ";cin.ignore(); cin>>a;
             res=cos(a*pi/180); VALID_TOKEN = 1; return res;}}}
 
 //*Es la operacion de sacar el tan
 double tan(){if(res==0 && resultado==0 && resdiv == 0){
-    cout<<"\n\n----->Ingrese el numero para sacar el tan: ";cin.ignore(); cin>>a;
+    cout<<"\n\n----->Ingrese el grado para sacar el tan: ";cin.ignore(); cin>>a;
     res=tan(a*pi/180); VALID_TOKEN = 1; return res;}
     else{ TEXT_COLOR(hConsole,12);
     cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
         if (utilant=='n' || utilant=='N'){
              if (VALID_TOKEN == 0){
-                res=cos(resultado*pi/180); VALID_TOKEN = 1; return res;
+                res=tan(resultado*pi/180); VALID_TOKEN = 1; return res;
             }else{if(VALID_TOKEN == 1){
-                res=cos(res*pi/180); VALID_TOKEN = 1; return res;}}}
+                res=tan(res*pi/180); VALID_TOKEN = 1; return res;}}}
         else{
-            cout<<"\n\n----->Ingrese el numero para sacar el cos: ";cin.ignore(); cin>>a;
-            res=cos(a*pi/180); VALID_TOKEN = 1; return res;}}}
+            cout<<"\n\n----->Ingrese el grado para sacar la tan: ";cin.ignore(); cin>>a;
+            res=tan(a*pi/180); VALID_TOKEN = 1; return res;}}}
+            
+//*Es la operacion que calcula la cotangente
+double cotangente(){ if(res==0 && resultado==0 && resdiv == 0){
+    cout<<"\n\n----->Ingrese el numero para calcularle su cotangente: ";cin>>a; a = a * pi / 180;
+    res = 1 / tan(a); VALID_TOKEN = 1; return res;}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+        if (utilant=='n' || utilant=='N'){
+            if ( VALID_TOKEN == 0){
+                resultado = resultado * pi / 180; res = 1 / tan(resultado); VALID_TOKEN = 2; return res;
+            }else{if( VALID_TOKEN == 1){
+                res = res * pi / 180; res = 1 / tan(res); VALID_TOKEN = 1; return res;
+            }else{
+                resdiv = resdiv * pi / 180; res = 1 / tan(resdiv); VALID_TOKEN = 1; return res;}}}
+            else{
+                cout<<"\n\n----->Ingrese el numero para calcularle su cotangente: ";cin>>a; a = a * pi / 180;
+                res = 1 / tan(a); VALID_TOKEN = 1; return res;}}}
+
+//*Es la operacion que calcula la secante
+double secante(){ if(res==0 && resultado==0 && resdiv == 0){
+    cout<<"\n\n----->Ingrese el numero para calcularle su secante: ";cin>>a; a = a * pi / 180;
+    res=1/cos(a); VALID_TOKEN = 1; return res;}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+        if (utilant=='n' || utilant=='N'){
+            if ( VALID_TOKEN == 0){
+                resultado = resultado * pi / 180; res=1/cos(resultado); VALID_TOKEN = 1; return res;
+            }else{if( VALID_TOKEN == 1){
+                res = res * pi / 180; res=1/cos(res); VALID_TOKEN = 2; return res;
+            }else{
+                resdiv = resdiv * pi / 180; res=1/cos(resdiv); VALID_TOKEN = 1; return res;}}}
+            else{
+                cout<<"\n\n----->Ingrese el numero para calcularle su secante: ";cin>>a; a = a * pi / 180;
+                res=1/cos(a); VALID_TOKEN = 1; return res;}}}
+            
+
+//*Es la operacion que calcula la cosecante
+double cosecante(){ if(res==0 && resultado==0 && resdiv == 0){
+    cout<<"\n\n----->Ingrese el numero para calcularle su cosecante: ";cin>>a; a = a * pi / 180;
+    res=1/sin(a); VALID_TOKEN = 1; return res;}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+        if (utilant=='n' || utilant=='N'){
+            if ( VALID_TOKEN == 0){
+                resultado = resultado * pi / 180; res=1/sin(resultado);  VALID_TOKEN = 2; return res;
+            }else{if( VALID_TOKEN == 1){
+                res = res * pi / 180; res=1/sin(res);  VALID_TOKEN = 1; return res;
+            }else{
+                resdiv = resdiv * pi / 180; res=1/sin(resdiv);  VALID_TOKEN = 1; return res;}}}
+            else{
+               cout<<"\n\n----->Ingrese el numero para calcularle su cosecante: ";cin>>a; a = a * pi / 180;
+                res=1/sin(a); VALID_TOKEN = 1; return res;}}}
 
 //*Es la operacion de sacar combinaciones
 int combinaciones(){ int n,r,fact,nr,rr,n_r;
@@ -291,6 +360,11 @@ printf("\n\n----->Proporciona 2 valores separados por enter que indiquen N y R: 
         for ( i = 1; i <= r; i++){
             fact=fact*i;} n_r=fact;
         resultado=nr/n_r; return resultado;}
+
+
+
+
+        
 //* La operacion del valor absoluto
 int vabsoluto(){
     cout<<"\n\n----->Ingrese el numero para sacar el valor absoluto: ";cin.ignore(); cin>>a;
