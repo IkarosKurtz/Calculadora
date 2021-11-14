@@ -10,7 +10,7 @@ HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 int resultado=0;
 double res=0,p,pi=M_PI;
 char utilant;
-int x,a,b,i,VALID_TOKEN=0;
+int a = 0,b = 0,i,VALID_TOKEN=0;
 int opcion,opfun;
 float resdiv=0;
 
@@ -88,6 +88,7 @@ void menu(){
         cout<<"\nEl resultado de la operacion anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
         else{TEXT_COLOR(hConsole, 2);
         cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}}
+
 //todos menu de las funciones
 void submenu(){ system("cls");
  TEXT_COLOR(hConsole,9); cout<<"Funciones trigonometricas\n\n";TEXT_COLOR(hConsole,7);
@@ -172,7 +173,7 @@ float division(){if(resultado==0 && res==0 && resdiv==0){
             else{resdiv = resdiv / b; VALID_TOKEN = 2; return resdiv;}}}
         else{
             cout<<"\n\n----->Ingrese los numeros a dividir como a y b pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
-            resultado=a/b; VALID_TOKEN=0; return resultado;}}}
+            resdiv=a/b; VALID_TOKEN=2; return resdiv;}}}
 
 //*Es la operacion de elevar al cuadrado
 int cuadrado(){if(res==0 && resultado==0 && resdiv==0){
