@@ -3,7 +3,7 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-//* TEXT_COLORes para las frases
+//* Color para las frases
 HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 #define TEXT_COLOR SetConsoleTextAttribute
 //todos estos son las variables globales
@@ -11,13 +11,17 @@ int resultado=0;
 double res=0,p,pi=M_PI;
 char utilant;
 int a = 0,b = 0,i,VALID_TOKEN=0;
-int opcion,opfun;
+int opcion;
 float resdiv=0;
 
 //? Declaraciones de las funciones, se podria quitar
-int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia(); int combinaciones(); int permutaciones(); int vabsoluto();
+int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia(); int vabsoluto();
 void submenu(); double seno(); double cos(); double tan(); double cotangente(); double secante(); double cosecante();
+void combandpermenu(); int combinaciones(); int permutaciones(); int permutacionesfact(); int permutacionesrrepe(); int permutacionesrnorepe();
+int permutacioneskobj();
 
+//todos El VALID_TOKEN sirve para que se muestre en pantalla el resultado anterior en los menus
+//todos Y el M_PI es el valor de pi
 
 //! El main
 int main(){ system("cls"); 
@@ -55,13 +59,7 @@ case 6:
 case 7:
         submenu();
 case 8:
-        combinaciones();
-        cout<<"\n\n--->Las combinaciones son: "<<resultado;
-        cout<<"\n\n"; system("pause"); main();
-case 9:
-        permutaciones();
-        cout<<"\n\n--->Las permutaciones son: "<<resultado;
-        cout<<"\n\n"; system("pause"); main();
+        combandpermenu();
  default:
         TEXT_COLOR(hConsole,4);
         cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA"<<endl; TEXT_COLOR(hConsole, 7);
@@ -76,10 +74,9 @@ void menu(){
  cout<<"4- Elevar al cuadrado"<<endl;
  cout<<"5- Elevar al cubo"<<endl;
  cout<<"6- Elevar a la n"<<endl;
- cout<<"7- Funciones trigonometricas"<<endl;
- cout<<"8- Combinaciones"<<endl;
- cout<<"9- Permutaciones"<<endl;
- 
+ cout<<"7- Funciones Trigonometricas"<<endl;
+ cout<<"8- Combinaciones y Permutaciones"<<endl;
+ //todos Esta parte es para poner el resultaodo anterior y que el usaurio no tenga que recordarlo
  if (resultado==0 && res==0 && resdiv==0){ TEXT_COLOR(hConsole, 2); cout<<"\nEl resultado anterior es: 0"<<endl; TEXT_COLOR(hConsole, 7);}
  else{
      if (VALID_TOKEN==0){ TEXT_COLOR(hConsole, 2);
@@ -89,10 +86,11 @@ void menu(){
         cout<<"\nEl resultado de la operacions anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
         else{TEXT_COLOR(hConsole, 2);
         cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}}
+//todos Aqui acaba 
 
 //todos menu de las funciones
-void submenu(){ system("cls");
- TEXT_COLOR(hConsole,9); cout<<"Funciones trigonometricas\n\n";TEXT_COLOR(hConsole,7);
+void submenu(){ system("cls"); int opfun;
+ TEXT_COLOR(hConsole,9); cout<<"FUNCIONES TRIGONOMETRICAS\n\n";TEXT_COLOR(hConsole,7);
  cout<<"Elejir una de las opciones"<<endl;
  cout<<"1- Funcion Seno"<<endl;
  cout<<"2- Funcion Coseno"<<endl;
@@ -100,6 +98,7 @@ void submenu(){ system("cls");
  cout<<"4- Funcion Cotangente"<<endl;
  cout<<"5- Funcion Secante"<<endl;
  cout<<"6- Funcion Cosecante"<<endl;
+ //todos Esta parte es para poner el resultaodo anterior y que el usaurio no tenga que recordarlo
  if (resultado==0){ TEXT_COLOR(hConsole, 2); cout<<"\nEl resultado anterior es: 0"<<endl; TEXT_COLOR(hConsole, 7);}
  else{
      if (VALID_TOKEN==0){ TEXT_COLOR(hConsole, 2);
@@ -109,7 +108,7 @@ void submenu(){ system("cls");
         cout<<"\nEl resultado de la operacions anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
         else{TEXT_COLOR(hConsole, 2);
         cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}
-
+//todos Aqui acaba 
  cout<<"\nIngrese el numero de la opcion que quiere: ";cin.ignore(); cin>>opfun;
     switch (opfun)
     {
@@ -138,7 +137,59 @@ void submenu(){ system("cls");
         cout<<"--->El Cosecante es: "<<res;
         cout<<"\n\n"; system("pause"); main();
     default:
-        break;}}
+        TEXT_COLOR(hConsole,4);
+        cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA"<<endl; TEXT_COLOR(hConsole, 7);
+        system("pause"); main();}}
+
+//todos Este es el menu para las combinaiones y permutaciones
+void combandpermenu(){system("cls"); int opcomb;
+ TEXT_COLOR(hConsole,9); cout<<"COMBINACIONES Y PERMUTACIONES\n\n";TEXT_COLOR(hConsole,7);
+ cout<<"Elejir una de las opciones"<<endl;
+ cout<<"1- Combinacion"<<endl;
+ cout<<"2- Permutacion"<<endl;
+ cout<<"3- Permutaciones de n objetos sin repeticion"<<endl;
+ cout<<"4- Permutaciones de n objetos en grupos de r con repeticion"<<endl;
+ cout<<"5- Permutaciones de n objetos en grupos de r sin repeticion"<<endl;
+ cout<<"6- Permutaciones de n objetos con repeticion de k tipos distintos"<<endl;
+ //todos Esta parte es para poner el resultaodo anterior y que el usaurio no tenga que recordarlo
+ if (resultado==0){ TEXT_COLOR(hConsole, 2); cout<<"\nEl resultado anterior es: 0"<<endl; TEXT_COLOR(hConsole, 7);}
+ else{
+     if (VALID_TOKEN==0){ TEXT_COLOR(hConsole, 2);
+     cout<<"\nEl resultado de la operacion anterior: "<<resultado<<endl;TEXT_COLOR(hConsole, 7);}
+     else{TEXT_COLOR(hConsole, 2);
+      if (VALID_TOKEN==2){ TEXT_COLOR(hConsole, 2);
+        cout<<"\nEl resultado de la operacions anterior: "<<resdiv<<endl;TEXT_COLOR(hConsole, 7);}
+        else{TEXT_COLOR(hConsole, 2);
+        cout<<"\nEl resultado de la operacion de la funcion anterior: "<<res<<endl;TEXT_COLOR(hConsole, 7);}}}
+ //todos Aqui acaba       
+    cout<<"\nIngrese el numero de la opcion que quiere: ";cin.ignore(); cin>>opcomb;
+    switch (opcomb){
+    case 1: combinaciones();
+        cout<<"\n\n--->El numero de combinaciones son: "<<resultado;
+        cout<<"\n\n"; system("pause"); main();
+    case 2: permutaciones();
+        cout<<"\n\n--->El numero de permutaciones son: "<<resultado;
+        cout<<"\n\n"; system("pause"); main();
+    case 3:
+        permutacionesfact();
+        cout<<"--->El numero de permutaciones de n objetos sin repeticion es : "<<resultado;
+        cout<<"\n\n"; system("pause"); main();
+    case 4:
+        permutacionesrrepe();
+        cout<<"--->El numero de permutaciones de n objetos en grupos de r, con repeticion es : "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    case 5:
+        permutacionesrnorepe();
+        cout<<"--->El numero de permutaciones de n objetos en grupos de r, con repeticion es : "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    case 6:
+        permutacioneskobj();
+        cout<<"--->El numero de permutaciones de n objetos con repeticion de k timpos distintos : "<<res;
+        cout<<"\n\n"; system("pause"); main();
+    default:
+        TEXT_COLOR(hConsole,4);
+        cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA"<<endl; TEXT_COLOR(hConsole, 7);
+        system("pause"); main();}}
 
 //*Es la operacion de la suma
 int suma(){if(resultado==0 && res==0 && resdiv == 0){ //! El if es por si el usuario quiere utilizar el resultado anterior
@@ -177,19 +228,24 @@ int resta(){if(resultado==0 && res==0 && resdiv == 0){
 //*Es la operacion de la division
 float division(){if(resultado==0 && res==0 && resdiv==0){
     cout<<"\n\n----->Ingrese los numeros a dividir como a y b pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
-    resdiv=a/b; VALID_TOKEN=2; return resdiv;}
+    if (b == 0){ TEXT_COLOR(hConsole,4); cout<<"\nMath ERROR, usaurio recuerde que no se puede dividir entre cero"<<endl; TEXT_COLOR(hConsole, 7); system("pause"); main();}
+        else{resdiv=a/b; VALID_TOKEN=2; return resdiv;}}
     else{ TEXT_COLOR(hConsole,12);
     cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
         if (utilant=='n' || utilant=='N'){
-            cout<<"\n\n----->Ingrese los numeros a dividir como a pero separados con enter (se toma encuenta el resultado anterior): ";cin.ignore();cin>>b;
+            cout<<"\n\n----->Ingrese el numero por el cual se va a divir el resultado anterior: ";cin.ignore();cin>>b;
             if (VALID_TOKEN == 0){
-                resdiv = resultado / b; VALID_TOKEN = 2; return resdiv;}
+                if (b == 0){ TEXT_COLOR(hConsole,4); cout<<"\nMath ERROR, usaurio recuerde que no se puede dividir entre cero"<<endl; TEXT_COLOR(hConsole, 7); system("pause"); main();}
+                else{resdiv = resultado / b; VALID_TOKEN = 2; return resdiv;}}
             else{if (VALID_TOKEN == 1){
-                resdiv = res / b;  VALID_TOKEN = 2; return resdiv;}
-            else{resdiv = resdiv / b; VALID_TOKEN = 2; return resdiv;}}}
+                if (b == 0){ TEXT_COLOR(hConsole,4); cout<<"\nMath ERROR, usaurio recuerde que no se puede dividir entre cero"<<endl; TEXT_COLOR(hConsole, 7); system("pause"); main();}
+                else{resdiv = res / b;  VALID_TOKEN = 2; return resdiv;}}
+            else{if (b == 0){ TEXT_COLOR(hConsole,4); cout<<"\nMath ERROR, usaurio recuerde que no se puede dividir entre cero"<<endl; TEXT_COLOR(hConsole, 7); system("pause"); main();}
+            else{resdiv = resdiv / b; VALID_TOKEN = 2; return resdiv;}}}}
         else{
             cout<<"\n\n----->Ingrese los numeros a dividir como a y b pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
-            resdiv=a/b; VALID_TOKEN=2; return resdiv;}}}
+            if (b == 0){ TEXT_COLOR(hConsole,4); cout<<"\nMath ERROR, usaurio recuerde que no se puede dividir entre cero"<<endl; TEXT_COLOR(hConsole, 7); system("pause"); main();}
+            else{resdiv=a/b; VALID_TOKEN=2; return resdiv;}}}}
 
 //*Es la operacion de elevar al cuadrado
 int cuadrado(){if(res==0 && resultado==0 && resdiv==0){
@@ -350,7 +406,7 @@ printf("\n\n----->Proporciona 2 valores separados por enter que indiquen N y R: 
                     fact=fact*i;} rr=fact; fact=1;
                    for ( i = 1; i <= n-r; i++){
                         fact=fact*i;} n_r=fact;
-                    resultado=nr/(rr*n_r); return resultado;}
+                    resultado=nr/(rr*n_r); VALID_TOKEN = 0; return resultado;}
 //*Es la operacion de sacar permutaciones
 int permutaciones(){int n,r,fact,nr,n_r;
 printf("\n\n----->Proporciona 2 valores separados por enter que indiquen N y R: "); cin>>n;cin>>r;
@@ -359,12 +415,34 @@ printf("\n\n----->Proporciona 2 valores separados por enter que indiquen N y R: 
          fact=fact*i;} nr=fact; fact=1;
         for ( i = 1; i <= r; i++){
             fact=fact*i;} n_r=fact;
-        resultado=nr/n_r; return resultado;}
+        resultado=nr/n_r; VALID_TOKEN = 0; return resultado;}
+
+//*Formula de permutaciones de n objetos sin repeticion
+int permutacionesfact(){
+	cout<<"\n\n----->Ingrese el numero de los objetos: ";cin>>a; resultado=a;
+	if (a==0){ resultado=1; } else { for (i=a-1;i>1;i--){ resultado=resultado*(i); }} VALID_TOKEN = 0; return resultado;}
+
+//*Formula de permutaciones de n objetos en grupos de r con repeticion
+int permutacionesrrepe(){
+	cout<<"\n\n----->Ingrese el numero de los objetos: ";cin>>a; cout<<"----->Ingrese r, el numero de objetos que integran los grupos : ";cin>>b;
+	res=pow(a,b); VALID_TOKEN = 1; return res;}
+
+//*Formula de permutaciones de n objetos en grupos de r sin repeticion
+int permutacionesrnorepe(){ int af,bf;
+	cout<<"\n\n----->Ingrese el numero de los objetos: ";cin>>a; af=a; cout<<"----->Ingrese r, el numero de objetos que integran los grupos : ";cin>>b; b=a-b; bf=b;
+	if (a==0){ af=1; } else { for (i=a-1;i>1;i--){ af=af*(i); }} if (b==0){ bf=1; }
+    else { for (i=b-1;i>1;i--){ bf=bf*(i); }} res=af/bf; VALID_TOKEN = 1; return res;}
+
+//*Formula de permutaciones de n objetos con repeticion de k tipos distintos
+int permutacioneskobj(){ int af,bf,k,kf,kfn;
+	cout<<"\n\n----->Ingrese el numero de los objetos: "; cin>>a; res=a;
+	if (a==0){ res=1;} else { for (i=a-1;i>1;i--){ res=res*(i);}} kfn=1; 
+	do {cout<<"----->Introduce el numero de el objeto que se repite (introduce 0 para acabar dejar de ingresar k): "; cin>>k; 
+    kf=k;if (k==0){ kf=1;}
+    else { for (i=k-1;i>1;i--){ kf=kf*(i);}}kf=kf*kfn;kfn=kf;} while (k!=0);res=res/kfn; VALID_TOKEN = 1; return res;}
 
 
 
-
-        
 //* La operacion del valor absoluto
 int vabsoluto(){
     cout<<"\n\n----->Ingrese el numero para sacar el valor absoluto: ";cin.ignore(); cin>>a;
