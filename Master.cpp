@@ -8,17 +8,18 @@ HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 #define TEXT_COLOR SetConsoleTextAttribute
 //todos estos son las variables globales
 int resultado=0;
-double res=0,p,pi=M_PI;
+double res=0,p,pi=M_PI,z;
 char utilant;
 int a = 0,b = 0,i,VALID_TOKEN=0;
 int opcion;
 float resdiv=0;
 
 //? Declaraciones de las funciones, se podria quitar
-int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia(); int vabsoluto();
+int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia();
 void submenu(); double seno(); double cos(); double tan(); double cotangente(); double secante(); double cosecante();
 void combandpermenu(); int combinaciones(); int permutaciones(); int permutacionesfact(); int permutacionesrrepe(); int permutacionesrnorepe();
-int permutacioneskobj();
+int permutacioneskobj(); int absoluto(); double notacien(); double raizcuadrada(); double raizx(); double logaritmoN();
+double logaritmo10();
 
 //todos El VALID_TOKEN sirve para que se muestre en pantalla el resultado anterior en los menus
 //todos Y el M_PI es el valor de pi
@@ -29,21 +30,36 @@ int main(){ system("cls");
  printf("Bienvenido a la calculadora cientifica\n\n");
  TEXT_COLOR(hConsole, 7);
  menu();
- cout<<"\nIngrese el numero de la opcion que quiere: "; cin>>opcion;
+ cout<<"\nIngrese el numero de la opcion que quiere: ";  cin>>opcion;
  //! Este es la seleccion del menu y algunas acciones
  switch (opcion){
  case 1:
         suma();
+        if (VALID_TOKEN == 0){
         cout<<"--->La suma es: "<<resultado;
-        cout<<"\n\n"; system("pause"); main();
+        cout<<"\n\n"; system("pause"); main();}
+        else{ if (VALID_TOKEN == 1){
+        cout<<"--->La suma es: "<<res;
+        cout<<"\n\n"; system("pause"); main();}
+        else{
+        cout<<"--->La suma es: "<<resdiv;
+        cout<<"\n\n"; system("pause"); main();}}
  case 2:
         resta();
+        if (VALID_TOKEN == 0){
         cout<<"--->La resta es: "<<resultado;
-        cout<<"\n\n"; system("pause"); main();
+        cout<<"\n\n"; system("pause"); main();}
+        else{ if (VALID_TOKEN == 1){
+        cout<<"--->La resta es: "<<res;
+        cout<<"\n\n"; system("pause"); main();}
+        else{
+        cout<<"--->La resta es: "<<resdiv;
+        cout<<"\n\n"; system("pause"); main();}}
  case 3:
         division();
         cout<<"--->La division es: "<<resdiv;
         cout<<"\n\n"; system("pause"); main();
+        
 case 4:
         cuadrado();
         cout<<"--->La potencia al cuadrado es: "<<res;
@@ -60,6 +76,57 @@ case 7:
         submenu();
 case 8:
         combandpermenu();
+case 9:
+        absoluto();
+         if (VALID_TOKEN == 0){
+         cout<<"\n\n--->El valor absoluto es:"<<resultado;
+         cout<<"\n\n"; system("pause"); main();}
+         else{ if (VALID_TOKEN == 1){
+            cout<<"\n\n--->El valor absoluto es:"<<res;
+            cout<<"\n\n"; system("pause"); main();}
+         else{
+            cout<<"\n\n--->El valor absoluto es:"<<resdiv;
+            cout<<"\n\n"; system("pause"); main();}}
+case 10:    system("cls");TEXT_COLOR(hConsole,9);
+            printf("Notacion cientifica: \n\n"); TEXT_COLOR(hConsole,7);
+            printf("1- De notacion cientifica a decimal\n");
+            printf("2- De decimal a notacion cientifica\n");
+            cout<<"Elije una opcion: "; cin>>opcion;
+            notacien();
+            if (opcion==1){
+                cout<<res;}
+            cout<<"\n\n"; system("pause"); main();
+case 11:    system("cls");TEXT_COLOR(hConsole,9);
+            printf("Raices: \n\n"); TEXT_COLOR(hConsole,7);
+            printf("1- Raiz cuadrada\n");
+            printf("2- Raiz a la n\n");
+            cout<<"Elije una opcion: "; cin>>opcion;
+            if (opcion==1){
+                raizcuadrada();
+                printf("Su raiz cuadrada es: ");
+                cout<<res;
+            }
+            else{
+                raizx();
+                printf("Su raiz es: ");
+                cout<<res;
+            }
+            cout<<"\n\n";
+            system("pause");
+            main();
+case 12:    system("cls");TEXT_COLOR(hConsole,9);
+            printf("Logaritmos: \n\n"); TEXT_COLOR(hConsole,7);
+            printf("1- Logaritmo natural\n");
+            printf("2- Logaritmo base 10 o normal\n");
+            cout<<"Elije una opcion: "; cin>>opcion;
+            if (opcion==1){
+                logaritmoN();
+                printf("Su logaritmo natural es: ");
+                cout<<res;}
+            else{
+                logaritmo10();
+                printf("Su logaritmo a base 10 es: ");
+                cout<<res;} cout<<"\n\n"; system("pause"); main();
  default:
         TEXT_COLOR(hConsole,4);
         cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA"<<endl; TEXT_COLOR(hConsole, 7);
@@ -76,6 +143,10 @@ void menu(){
  cout<<"6- Elevar a la n"<<endl;
  cout<<"7- Funciones Trigonometricas"<<endl;
  cout<<"8- Combinaciones y Permutaciones"<<endl;
+ cout<<"9- Valor absoluto"<<endl;
+ cout<<"10- Notacion cientifica"<<endl;
+ cout<<"11- Raices"<<endl;
+ cout<<"12- Logaritmos"<<endl;
  //todos Esta parte es para poner el resultaodo anterior y que el usaurio no tenga que recordarlo
  if (resultado==0 && res==0 && resdiv==0){ TEXT_COLOR(hConsole, 2); cout<<"\nEl resultado anterior es: 0"<<endl; TEXT_COLOR(hConsole, 7);}
  else{
@@ -219,7 +290,7 @@ int resta(){if(resultado==0 && res==0 && resdiv == 0){
             if (VALID_TOKEN == 0){
                resultado -= a - b ;  VALID_TOKEN = 0; return resultado;}
             else{if (VALID_TOKEN == 1){
-                resultado = res - a - b;  VALID_TOKEN = 0; return resultado;}
+                res = res - a - b;  VALID_TOKEN = 1; return res;}
             else{resdiv = resdiv + a + b; VALID_TOKEN = 2; return resdiv;}}}
         else{
             cout<<"\n\n----->Ingrese los numeros a restar como a y b pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
@@ -298,7 +369,100 @@ int xpotencia(){if(res==0 && resultado==0 && resdiv == 0){
         else{
             cout<<"\n\n----->Ingrese los numeros para elevar a la x^n pero separados con enter: ";cin.ignore(); cin>>a;cin>>b;
             res=pow(a,b); VALID_TOKEN = 1; return res;}}}
-            
+
+//* Operacion raiz cuadrada
+double raizcuadrada(){ if(res==0 && resultado==0 && resdiv == 0){
+    do{
+        printf("Ingresa valor para obtener la raiz cuadrada: ");cin>>z;
+    }while(z<0);
+    res=sqrt(z); VALID_TOKEN = 1; return res;}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+        if (utilant=='n' || utilant=='N'){
+            if ( VALID_TOKEN == 0){
+                if (resultado < 0){ TEXT_COLOR(hConsole,12);cout<<"Usuario no se puede sacar raiz a numeros negativos"<<endl;
+                TEXT_COLOR(hConsole,7); system("pause"); main();}
+                res=sqrt(resultado); VALID_TOKEN = 1; return res;
+            }else{if( VALID_TOKEN == 1){
+                if (res < 0){ TEXT_COLOR(hConsole,12);cout<<"Usuario no se puede sacar raiz a numeros negativos"<<endl;
+                TEXT_COLOR(hConsole,7); system("pause"); main();}
+                res=sqrt(res); VALID_TOKEN = 1; return res;
+            }else{
+                if (resdiv < 0){ TEXT_COLOR(hConsole,12);cout<<"Usuario no se puede sacar raiz a numeros negativos"<<endl;
+                TEXT_COLOR(hConsole,7); system("pause"); main();}
+                res=sqrt(resdiv); VALID_TOKEN = 1; return res;}}}
+        else{do{
+                printf("Ingresa valor para obtener la raiz cuadrada: ");cin>>z;
+            }while(z<0);
+            res=sqrt(z); VALID_TOKEN = 1; return res;}}}
+
+//*Operacion raiz a la n
+double raizx(){ double w; if(res==0 && resultado==0 && resdiv == 0){
+    printf("\n\n----->Ingresa valor del grado de la raiz y el valor al cual aplicarle dicha raiz separados por ENTER: "); cin>>w; cin>>z; a=w;
+    if (a%2==0){
+        while(z<0){
+            printf("*El valor que sacara la raiz debe ser 0 o mayor: "); cin>>z;}
+        res=pow(z,1/w);}
+    else{
+        if(z<0){
+            z=z*-1;
+            res=pow(z,1/w);
+            res=res*-1;}
+        else{res=pow(z,1/w);} VALID_TOKEN = 1; return res;}}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+    if (utilant=='n' || utilant=='N'){
+        if ( VALID_TOKEN == 0){
+                printf("\n\n----->Ingresa valor del grado de la raiz ya el el valor de x sera el resultado anterior: "); cin>>w; a=w;
+                if (a%2==0){
+                    if(resultado<0){TEXT_COLOR(hConsole,12); printf("*El valor que sacara la raiz debe ser 0 o mayor: "); TEXT_COLOR(hConsole,7); system("pause"); main();}
+                    res=pow(resultado,1/w);}
+                else{
+                    if(resultado<0){
+                        resultado*=-1;
+                        res=pow(resultado,1/w);
+                        res*=-1;}
+                    else{res=pow(resultado,1/w);} VALID_TOKEN = 1; return res;}
+            }else{if( VALID_TOKEN == 1){
+                    printf("\n\n----->Ingresa valor del grado de la raiz ya el el valor de x sera el resultado anterior: "); cin>>w; a=w;
+                if (a%2==0){
+                    if(res<0){TEXT_COLOR(hConsole,12); printf("*El valor que sacara la raiz debe ser 0 o mayor"); TEXT_COLOR(hConsole,7); system("pause"); main();}
+                    res=pow(res,1/w);}
+                else{
+                    if(res<0){
+                        res*=-1;
+                        res=pow(res,1/w);
+                        res*=-1;}
+                    else{res=pow(res,1/w);} VALID_TOKEN = 1; return res;}
+            }}}else{
+                    printf("\n\n----->Ingresa valor del grado de la raiz y el valor al cual aplicarle dicha raiz separados por ENTER: "); cin>>w; cin>>z; a=w;
+                    if (a%2==0){
+                        while(z<0){
+                            printf("*El valor que sacara la raiz debe ser 0 o mayor: "); cin>>z;}
+                        res=pow(z,1/w);}
+                    else{
+                        if(z<0){
+                            z=z*-1;
+                            res=pow(z,1/w);
+                            res=res*-1;}
+                        else{res=pow(z,1/w);} VALID_TOKEN = 1; return res;}}}}
+
+//* Operacion de logaritmo natural
+double logaritmoN(){
+    do{
+        printf("\n\nIngrese valor para calcular el logartimo natural, mayor a 0: "); cin>>z;
+    }while(z<=0);
+    res=log(z);
+    return res;}
+
+//*Operacion de logaritmo de base 10
+double logaritmo10(){
+    do{
+        printf("\n\nIngrese valor para calcular el logartimo base 10, mayor a 0: "); cin>>z;
+    }while(z<=0);
+    res=log10(z);
+    return res;}
+
 //*Es la operacion de sacar el seno
 double seno(){if(res==0 && resultado==0 && resdiv == 0){
     cout<<"\n\n----->Ingrese el grado para sacar el seno: ";cin.ignore(); cin>>a;
@@ -441,10 +605,65 @@ int permutacioneskobj(){ int af,bf,k,kf,kfn;
     kf=k;if (k==0){ kf=1;}
     else { for (i=k-1;i>1;i--){ kf=kf*(i);}}kf=kf*kfn;kfn=kf;} while (k!=0);res=res/kfn; VALID_TOKEN = 1; return res;}
 
-
-
 //* La operacion del valor absoluto
-int vabsoluto(){
-    cout<<"\n\n----->Ingrese el numero para sacar el valor absoluto: ";cin.ignore(); cin>>a;
-    resultado=tan(a*pi/180); return resultado;
-}
+int absoluto(){if(res==0 && resultado==0 && resdiv == 0){
+    printf("\n\n----->Ingrese el numero para obtener su valor absoluto: "); cin>>a;
+    if (a>=0){
+        resultado=a;}
+    else {
+        resultado=a*-1;} VALID_TOKEN = 0; return resultado;}
+    else{ TEXT_COLOR(hConsole,12);
+    cout<<"\n\nQuieres utlizar el resultado de la operacion anterior?? (ingresar n si es asi, si no cualquier otra tecla): "; cin>>utilant; TEXT_COLOR(hConsole,7);
+        if (utilant=='n' || utilant=='N'){
+            if ( VALID_TOKEN == 0){
+                if (resultado<0){
+                resultado*=-1;} VALID_TOKEN = 0; return resultado;
+            }else{if( VALID_TOKEN == 1){
+                if (res<0){
+                res=res*-1;} VALID_TOKEN = 1; return res;
+            }else{
+                if (resdiv<0){
+                resdiv=resdiv*-1;} VALID_TOKEN = 2; return resdiv;
+            }}}
+        else{
+            printf("\n\n----->Ingrese el numero para obtener su valor absoluto :"); cin>>a;
+            if (a>=0){
+                resultado=a;}
+            else {
+                resultado=a*-1;} VALID_TOKEN = 0; return resultado;}}}
+
+//* Notacion cientifica
+double notacien(){
+    int cont=0;
+    double aux;
+    switch(opcion){
+        case 1:
+            printf("\n\n----->Ingresa valor (x) que multiplica a 10 y el valor (y) que es su exponente separados por enter: ");
+            cin>>a;
+            cin>>b;
+            if (b>=0){
+                res=a*(pow(10,b));
+            }
+            else{
+                res=a*(pow(10,b));
+            }
+            cout<<"\n\n--->Tu valor de notacion cientifica a decimal es: ";
+            return res;break;
+        case 2:
+            printf("\n----->Ingresa valor numerico para su notacion cientifica: ");
+            cin>>z;
+            if (z<=1){
+                aux=z;
+                while(aux<1){
+                    aux=aux*10.0;
+                    cont=cont+1;}
+                cont=cont*-1;
+                printf("--->En notacion cientifica es: ");cout<<aux;
+                printf("(10)^");cout<<cont;}
+            else{
+                aux=z;
+                while(aux>10){
+                    aux=aux/10.0;
+                    cont=cont+1;}
+                printf("En notacion cientifica es: ");cout<<aux;
+                printf("(10)^");cout<<cont;}break;}}
