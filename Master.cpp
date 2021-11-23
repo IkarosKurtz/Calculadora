@@ -11,14 +11,14 @@ double res = 0,pi = M_PI,z,p;
 char utilant;
 double a = 0,b = 0;
 int i,opcion,x,opcolor,VALID_TOKEN = 0,readsave = 1;
-int TITLE_COLOR = 6,SUBTITLE_COLOR = 9,MENU_COLOR = 7, ERROR_MESSAGE = 4,RESULT_INMENU = 2, QUEST_NUMBER  = 12, COLORANT;
-
+int TITLE_COLOR = 6,SUBTITLE_COLOR = 9,MENU_COLOR = 7, ERROR_MESSAGE = 4,RESULT_INMENU = 2, QUEST_NUMBER  = 12, RES_COLOR = 7, COLORANT;
+//Gillbran Cadengo Rodríguez ID: 332939 Sebastián Herrera Murillo  ID: 233324 Carlos Leonardo Cruz Ortiz ID: 261696
 //? Declaraciones de las funciones, se podria quitar
 int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia();
 void submenu(); double seno(); double cos(); double tan(); double cotangente(); double secante(); double cosecante();
 void combandpermenu(); int combinaciones(); int permutaciones(); int permutacionesfact(); int permutacionesrrepe(); int permutacionesrnorepe();
 int permutacioneskobj(); int absoluto(); double notacien(); double raizcuadrada(); double raizx(); double logaritmoN();
-double logaritmo10(); void config(); void save(); void read();
+double logaritmo10(); void config(); void save(); void read(); void colors();
 
 //todos Y el M_PI es el valor de pi
 
@@ -34,31 +34,31 @@ int main(){ system("cls");
  //! Este es la seleccion del menu y algunas acciones
  switch (opcion){
  case 1:
-        suma();
-        cout<<"--->La suma es: "<<res;
+        suma(); TEXT_COLOR(hConsole, RES_COLOR);  
+        cout<<"--->La suma es: "<<res; TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
 
  case 2:
-        resta();
-        cout<<"--->La resta es: "<<res;
+        resta(); TEXT_COLOR(hConsole, RES_COLOR);
+        cout<<"--->La resta es: "<<res; TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
 
  case 3:
-        division();
-        cout<<"--->La division es: "<<res;
+        division(); TEXT_COLOR(hConsole, RES_COLOR);
+        cout<<"--->La division es: "<<res; TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
         
 case 4:
-        cuadrado();
-        cout<<"--->La potencia al cuadrado es: "<<res;
+        cuadrado(); TEXT_COLOR(hConsole, RES_COLOR);
+        cout<<"--->La potencia al cuadrado es: "<<res; TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
 case 5:
-        cubo();
-        cout<<"--->La potencia al cubo es: "<<res;
+        cubo(); TEXT_COLOR(hConsole, RES_COLOR);
+        cout<<"--->La potencia al cubo es: "<<res; TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
 case 6:
-        xpotencia();
-        cout<<"--->La potencia a la n es: "<<res;
+        xpotencia(); TEXT_COLOR(hConsole, RES_COLOR);
+        cout<<"--->La potencia a la n es: "<<res;  TEXT_COLOR(hConsole, MENU_COLOR);
         cout<<"\n\n"; system("pause"); main();
 
 case 7:
@@ -101,14 +101,14 @@ case 11:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
                 cout<<"\nEl resultado de la operacion anterior: "<<res<<endl;TEXT_COLOR(hConsole, MENU_COLOR);}
             cout<<"\nElije una opcion: "; cin>>opcion;
             if (opcion == 1){
-                raizcuadrada();
-                printf("Su raiz cuadrada es: ");
+                raizcuadrada(); TEXT_COLOR(hConsole, RES_COLOR);
+                printf("Su raiz cuadrada es: ");TEXT_COLOR(hConsole, MENU_COLOR);
                 cout<<res;}
             else{if(opcion == 3){main();} if(opcion > 3 || opcion <= 0){TEXT_COLOR(hConsole,ERROR_MESSAGE);
                 cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA."<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
                 system("pause"); main();}
-                raizx();
-                printf("Su raiz es: ");
+                raizx();TEXT_COLOR(hConsole, RES_COLOR);
+                printf("Su raiz es: ");TEXT_COLOR(hConsole, MENU_COLOR);
                 cout<<res;}
             cout<<"\n\n"; system("pause"); main();
 
@@ -124,14 +124,14 @@ case 12:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
 
             cout<<"\nElije una opcion: "; cin>>opcion;
             if (opcion == 1){
-                logaritmoN();
-                printf("Su logaritmo natural es: ");
+                logaritmoN(); TEXT_COLOR(hConsole, RES_COLOR);
+                printf("Su logaritmo natural es: "); TEXT_COLOR(hConsole, MENU_COLOR);
                 cout<<res;}
             else{ if(opcion == 3){main();} if(opcion > 3 || opcion <= 0){TEXT_COLOR(hConsole,ERROR_MESSAGE);
                 cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA."<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
                 system("pause"); main();}
-                logaritmo10();
-                printf("Su logaritmo a base 10 es: ");
+                logaritmo10(); TEXT_COLOR(hConsole, RES_COLOR);
+                printf("Su logaritmo a base 10 es: "); TEXT_COLOR(hConsole, MENU_COLOR);
                 cout<<res;} cout<<"\n\n"; system("pause"); main();
 
 case 13: 	
@@ -144,53 +144,69 @@ case 13:
 
 void config(){system("cls");
 TEXT_COLOR(hConsole,SUBTITLE_COLOR);
- printf("COLORES: \n\n"); TEXT_COLOR(hConsole, MENU_COLOR);
- printf("1- Personalizar color del titulo principal.\n");
- printf("2- Personalizar color del texto en general.\n");
- cout<<"3- Personalizar color de los mensajes de error."<<endl;
- cout<<"4- Personalizar color de los subtitulos."<<endl;
- cout<<"5- Personalizar color del resultado anterior en los menus."<<endl;
- cout<<"6- Personalizar color de la pregunta del resultado anterior."<<endl;
- cout<<"7- <----Regresar y Guardar."<<endl;
- cout<<"Que opcion elije: "; cin>>opcolor;
-    switch (opcolor){
-case 1: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = TITLE_COLOR; cin>>TITLE_COLOR; if (TITLE_COLOR == 0){ TITLE_COLOR = COLORANT; config();} VALID_TOKEN ++;
-    }while (TITLE_COLOR <= 0 || TITLE_COLOR > 15);VALID_TOKEN --; config();
+ printf("CONFIGURACION: \n\n"); TEXT_COLOR(hConsole, MENU_COLOR);
+cout<<"1- Personalizacion."<<endl;
+cout<<"2- Creditos."<<endl;
+cout<<"3- <---Regresar."<<endl;
+cout<<"Que opcion elije: "; cin>>opcolor;
+switch (opcolor)
+{
+case 1:
+    printf("1- Personalizar color del titulo principal.\n");
+    printf("2- Personalizar color del texto en general.\n");
+    cout<<"3- Personalizar color de los mensajes de error."<<endl;
+    cout<<"4- Personalizar color de los subtitulos."<<endl;
+    cout<<"5- Personalizar color del resultado anterior en los menus."<<endl;
+    cout<<"6- Personalizar color de la pregunta del resultado anterior."<<endl;
+    cout<<"7- <----Regresar y Guardar."<<endl;
+    cout<<"Que opcion elije: "; cin>>opcolor;
+        switch (opcolor){
+    case 1: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = TITLE_COLOR; cin>>TITLE_COLOR; if (TITLE_COLOR == 0){ TITLE_COLOR = COLORANT; config();} VALID_TOKEN ++;
+        }while (TITLE_COLOR <= 0 || TITLE_COLOR > 15);VALID_TOKEN --; config();
 
-case 2: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = MENU_COLOR; cin>>MENU_COLOR; if (MENU_COLOR == 0){ MENU_COLOR = COLORANT; config();} VALID_TOKEN ++;
-    }while (MENU_COLOR <= 0 || MENU_COLOR > 15);VALID_TOKEN --; config();
+    case 2: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = MENU_COLOR; cin>>MENU_COLOR; if (MENU_COLOR == 0){ MENU_COLOR = COLORANT; config();} VALID_TOKEN ++;
+        }while (MENU_COLOR <= 0 || MENU_COLOR > 15);VALID_TOKEN --; config();
 
-case 3: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = ERROR_MESSAGE; cin>>ERROR_MESSAGE; if (ERROR_MESSAGE == 0){ ERROR_MESSAGE = COLORANT; config();} VALID_TOKEN ++;
-    }while (ERROR_MESSAGE <= 0 || ERROR_MESSAGE > 15);VALID_TOKEN --; config();
+    case 3: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = ERROR_MESSAGE; cin>>ERROR_MESSAGE; if (ERROR_MESSAGE == 0){ ERROR_MESSAGE = COLORANT; config();} VALID_TOKEN ++;
+        }while (ERROR_MESSAGE <= 0 || ERROR_MESSAGE > 15);VALID_TOKEN --; config();
 
-case 4: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = SUBTITLE_COLOR; cin>>SUBTITLE_COLOR; if (SUBTITLE_COLOR == 0){ SUBTITLE_COLOR = COLORANT; config();} VALID_TOKEN ++;
-    }while (SUBTITLE_COLOR <= 0 || SUBTITLE_COLOR > 15);VALID_TOKEN --; config();
+    case 4: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = SUBTITLE_COLOR; cin>>SUBTITLE_COLOR; if (SUBTITLE_COLOR == 0){ SUBTITLE_COLOR = COLORANT; config();} VALID_TOKEN ++;
+        }while (SUBTITLE_COLOR <= 0 || SUBTITLE_COLOR > 15);VALID_TOKEN --; config();
 
-case 5: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = RESULT_INMENU; cin>>RESULT_INMENU; if (RESULT_INMENU == 0){ RESULT_INMENU = COLORANT; config();} VALID_TOKEN ++;
-    }while (RESULT_INMENU <= 0 || RESULT_INMENU > 15);VALID_TOKEN --; config();
+    case 5: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = RESULT_INMENU; cin>>RESULT_INMENU; if (RESULT_INMENU == 0){ RESULT_INMENU = COLORANT; config();} VALID_TOKEN ++;
+        }while (RESULT_INMENU <= 0 || RESULT_INMENU > 15);VALID_TOKEN --; config();
 
-case 6: do{system("cls");
-    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
-    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";
-    cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = QUEST_NUMBER; cin>>QUEST_NUMBER; if (QUEST_NUMBER == 0){ QUEST_NUMBER = COLORANT; config();} VALID_TOKEN ++;
-    }while (QUEST_NUMBER <= 0 || QUEST_NUMBER > 15);VALID_TOKEN --; config();
+    case 6: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = QUEST_NUMBER; cin>>QUEST_NUMBER; if (QUEST_NUMBER == 0){ QUEST_NUMBER = COLORANT; config();} VALID_TOKEN ++;
+        }while (QUEST_NUMBER <= 0 || QUEST_NUMBER > 15);VALID_TOKEN --; config();
 
-case 7: save();}}
+    case 7: save();
+
+    default:
+        TEXT_COLOR(hConsole,ERROR_MESSAGE);
+        cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA."<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
+        system("pause"); main();}
+case 2: system("cls"); TEXT_COLOR(hConsole,SUBTITLE_COLOR);
+    cout<<"Proyecto de la Universidad Autonoma de Aguascalientes.\n"<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
+    cout<<"\t      Integrantes del equipo:\n"<<endl;
+    cout<<"\tCarlos Leonardo Cruz Ortiz  ID: 261696\n\n\tGillbran Cadengo Rodriguez  ID: 332939\n\n\tSebastian Herrera Murillo   ID: 233324\n"<<endl; system("pause"); main();
+
+case 3:
+    main();
+    
+default:
+        TEXT_COLOR(hConsole,ERROR_MESSAGE);
+        cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA."<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
+        system("pause"); main();}}
+
+void colors(){system("cls");
+    if (VALID_TOKEN == 1){TEXT_COLOR(hConsole,ERROR_MESSAGE); cin.ignore(); cout<<"Elija un color que este en la lista."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);}
+    cout<<"\nAzul oscuro			1  \nVerde oscuro			2  \nCyan oscuro			3  \nRojo oscuro			4  \nMagenta oscuro			5  \nAmarillo oscuro			6  \nGris claro			7  \nGris oscuro			8  \nAzul claro			9  \nVerde claro			10  \nCyan claro			11  \nRojo claro			12  \nMagenta claro			13  \nAmarillo claro			14  \nBlanco				15\n";}
 
 //todos Este es el menu
 void menu(){
@@ -681,8 +697,7 @@ double notacien(){
                     aux = aux * 10.0;
                     cont = cont + 1;}
                 cont = cont * -1;
-                printf("--->En notacion cientifica es: ");cout<<aux;
-                printf("(10)^");cout<<cont;}
+                printf("--->En notacion cientifica es: ");cout<<aux; printf("(10)^"); cout<<cont;}
             else{
                 aux=z;
                 while(aux > 10){
