@@ -3,15 +3,18 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+
 //* Color para las frases
 HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 #define TEXT_COLOR SetConsoleTextAttribute
+
 //todos estos son las variables globales
 double res = 0,pi = M_PI,z,p;
 char utilant;
 double a = 0,b = 0;
-int i,opcion,x,opcolor,VALID_TOKEN = 0,readsave = 1;
-int TITLE_COLOR = 6,SUBTITLE_COLOR = 9,MENU_COLOR = 7, ERROR_MESSAGE = 4,RESULT_INMENU = 2, QUEST_NUMBER  = 12, RES_COLOR = 7, COLORANT;
+int i,opcion,x,opcolor,VALID_TOKEN = 0,readsave = 1, TITLE_TOKEN = 0;
+int TITLE_COLOR = 6,SUBTITLE_COLOR = 9,MENU_COLOR = 7, ERROR_MESSAGE = 4, TITLE = 15, TITLE_DOWN = 3,RESULT_INMENU = 2, QUEST_NUMBER  = 12, RES_COLOR = 7, COLORANT;
+
 //Gillbran Cadengo Rodríguez ID: 332939 Sebastián Herrera Murillo  ID: 233324 Carlos Leonardo Cruz Ortiz ID: 261696
 //? Declaraciones de las funciones, se podria quitar
 int suma(); void menu(); float division(); int resta(); int cuadrado(); int cubo(); int xpotencia();
@@ -20,14 +23,28 @@ void combandpermenu(); int combinaciones(); int permutaciones(); int permutacion
 int permutacioneskobj(); int absoluto(); double notacien(); double raizcuadrada(); double raizx(); double logaritmoN();
 double logaritmo10(); void config(); void save(); void read(); void colors();
 
-//todos Y el M_PI es el valor de pi
+//todos El M_PI es el valor de pi
 
 //! El main
 int main(){ system("cls"); 
-//if (!TITLE_COLOR == 6 && !SUBTITLE_COLOR == 9 && !MENU_COLOR == 7 && !ERROR_MESSAGE == 4 && !RESULT_INMENU == 2 && !QUEST_NUMBER  == 12){}
-  if(readsave == 1){read();}
- TEXT_COLOR(hConsole,TITLE_COLOR);
- printf("\t\t\t\t     BIENVENIDO A LA CALCULADORA CIENTIFICA.\n\n");
+ if(readsave == 1){read();}
+ if(TITLE_TOKEN == 0){ TEXT_COLOR(hConsole,TITLE);
+ cout<<"\t _____    _____     ____   __     __  ______    _____   _______    ____          _    _";                       
+ cout<<"\n\t|  __ \\  |  __ \\   / __ \\  \\ \\   / / |  ____|  / ____| |__   __|  / __ \\        | |  | |     /\\         /\\";
+ cout<<"\n\t| |__| | | |__| | | |  | |  \\ \\_/ /  | |__    | |         | |    | |  | |       | |  | |    /  \\       /  \\  ";
+ cout<<"\n\t|  ___/  |  _  /  | |  | |   \\   /   |  __|   | |         | |    | |  | |       | |  | |   / /\\ \\     / /\\ \\  ";
+ cout<<"\n\t| |      | | \\ \\  | |__| |    | |    | |____  | |____     | |    | |__| |       | |__| |  / ____ \\   / ____ \\";
+ cout<<"\n\t|_|      |_|  \\_\\  \\____/     |_|    |______|  \\_____|    |_|     \\____/         \\____/  /_/    \\_\\ /_/    \\_\\ ";
+ cout<<"\n";TEXT_COLOR(hConsole,TITLE_DOWN);
+ cout<<"\n\t\t\t   _____           _                  _               _                        ";
+ cout<<"\n\t\t\t  / ____|         | |                | |             | |                       ";
+ cout<<"\n\t\t\t | |        __ _  | |   ___   _   _  | |   __ _    __| |   ___    _ __    __ _ ";
+ cout<<"\n\t\t\t | |       / _` | | |  / __| | | | | | |  / _` |  / _` |  / _ \\  | '__|  / _` |";
+ cout<<"\n\t\t\t | |____  | |_| | | | | |__  | |_| | | | | |_| | | |_| | | |_| | | |    | |_| |";
+ cout<<"\n\t\t\t  \\_____|  \\__,_| |_|  \\___|  \\__,_| |_|  \\__,_|  \\__,_|  \\___/  |_|     \\__,_|";
+ cout<<"\n\n";} TITLE_TOKEN = 1;
+ cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"      -----> "; TEXT_COLOR(hConsole,TITLE_COLOR); printf("BIENVENIDO A LA CALCULADORA CIENTIFICA"); TEXT_COLOR(hConsole,4); cout<<" <-----";
+ cout<<"\n\n";
  TEXT_COLOR(hConsole, MENU_COLOR);
  menu();
  cout<<"\nIngrese el numero de la opcion que quiere: ";  cin>>opcion;
@@ -72,8 +89,8 @@ case 9:
             cout<<"\n\n--->El valor absoluto es:"<<res;
             cout<<"\n\n"; system("pause"); main();
 
-case 10:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
-            printf("NOTACION CIENTIFICA: \n\n"); TEXT_COLOR(hConsole,MENU_COLOR);
+case 10:    system("cls");
+            cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("NOTACION CIENTIFICA"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n"; 
             printf("1- De notacion cientifica a decimal.\n");
             printf("2- De decimal a notacion cientifica.\n");
             cout<<"3- <----Regresar."<<endl;
@@ -90,8 +107,8 @@ case 10:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
                 cout<<res;}
             cout<<"\n\n"; system("pause"); main();
 
-case 11:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
-            printf("RAICES: \n\n"); TEXT_COLOR(hConsole,MENU_COLOR);
+case 11:    system("cls");
+            cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("RAICES"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n"; 
             printf("1- Raiz cuadrada.\n");
             printf("2- Raiz a la n.\n");
             cout<<"3- <----Regresar."<<endl;
@@ -112,8 +129,8 @@ case 11:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
                 cout<<res;}
             cout<<"\n\n"; system("pause"); main();
 
-case 12:    system("cls");TEXT_COLOR(hConsole,SUBTITLE_COLOR);
-            printf("LOGARITMOS: \n\n"); TEXT_COLOR(hConsole,MENU_COLOR);
+case 12:    system("cls");
+            cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("LOGARITMOS"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n"; 
             printf("1- Logaritmo natural.\n");
             printf("2- Logaritmo base 10 o normal.\n");
             cout<<"3- <----Regresar."<<endl;
@@ -143,22 +160,24 @@ case 13:
         system("pause"); main();}}
 
 void config(){system("cls");
-TEXT_COLOR(hConsole,SUBTITLE_COLOR);
- printf("CONFIGURACION: \n\n"); TEXT_COLOR(hConsole, MENU_COLOR);
+cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("CONFIGURACION"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n";
 cout<<"1- Personalizacion."<<endl;
 cout<<"2- Creditos."<<endl;
-cout<<"3- <---Regresar."<<endl;
-cout<<"Que opcion elije: "; cin>>opcolor;
+cout<<"3- <---Regresar y Guardar."<<endl;
+cout<<"Que opcion elije: "; cin>>opcolor; system("cls");
 switch (opcolor)
 {
 case 1:
+    cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("PERSONALIZACION"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n";
     printf("1- Personalizar color del titulo principal.\n");
     printf("2- Personalizar color del texto en general.\n");
     cout<<"3- Personalizar color de los mensajes de error."<<endl;
     cout<<"4- Personalizar color de los subtitulos."<<endl;
     cout<<"5- Personalizar color del resultado anterior en los menus."<<endl;
     cout<<"6- Personalizar color de la pregunta del resultado anterior."<<endl;
-    cout<<"7- <----Regresar y Guardar."<<endl;
+    cout<<"7- Personalizar color de la primera parte del titulo inicial del programa."<<endl;
+    cout<<"8- Personalizar color de la segunda parte del titulo inicial del programa."<<endl;
+    cout<<"9- <----Regresar."<<endl;
     cout<<"Que opcion elije: "; cin>>opcolor;
         switch (opcolor){
     case 1: do{colors();
@@ -184,20 +203,25 @@ case 1:
     case 6: do{colors();
         cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = QUEST_NUMBER; cin>>QUEST_NUMBER; if (QUEST_NUMBER == 0){ QUEST_NUMBER = COLORANT; config();} VALID_TOKEN ++;
         }while (QUEST_NUMBER <= 0 || QUEST_NUMBER > 15);VALID_TOKEN --; config();
+    case 7: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = TITLE; cin>>TITLE; if (TITLE == 0){ TITLE = COLORANT; config();} VALID_TOKEN ++;
+        }while (TITLE <= 0 || TITLE > 15);VALID_TOKEN --; config();
+    case 8: do{colors();
+        cout<<"\n\n---->Elige un color (Si quiere regresar ingrese 0): "; COLORANT = TITLE_DOWN; cin>>TITLE_DOWN; if (TITLE_DOWN == 0){ TITLE_DOWN = COLORANT; config();} VALID_TOKEN ++;
+        }while (TITLE_DOWN <= 0 || TITLE_DOWN > 15);VALID_TOKEN --; config();
 
-    case 7: save();
+    case 9: config();
 
     default:
         TEXT_COLOR(hConsole,ERROR_MESSAGE);
         cout<<"ESTA NO ES UNA OPCION VALIDA, USUARIO ELIJA UNA OPCION VALIDA."<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
         system("pause"); main();}
-case 2: system("cls"); TEXT_COLOR(hConsole,SUBTITLE_COLOR);
-    cout<<"Proyecto de la Universidad Autonoma de Aguascalientes.\n"<<endl; TEXT_COLOR(hConsole, MENU_COLOR);
-    cout<<"\t      Integrantes del equipo:\n"<<endl;
-    cout<<"\tCarlos Leonardo Cruz Ortiz  ID: 261696\n\n\tGillbran Cadengo Rodriguez  ID: 332939\n\n\tSebastian Herrera Murillo   ID: 233324\n"<<endl; system("pause"); main();
+case 2: system("cls");
+    cout<<"\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("Proyecto de la Universidad Autonoma de Aguascalientes"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n";
+    cout<<"\t\t\t          Integrantes del equipo:\n"<<endl;
+    cout<<"\t\t\t     Carlos Leonardo Cruz Ortiz  ID: 261696\n\n\t\t\t     Gillbran Cadengo Rodriguez  ID: 332939\n\n\t\t\t     Sebastian Herrera Murillo   ID: 233324\n"<<endl; system("pause"); main();
 
-case 3:
-    main();
+case 3:save();
     
 default:
         TEXT_COLOR(hConsole,ERROR_MESSAGE);
@@ -223,7 +247,7 @@ void menu(){
 
 //todos menu de las funciones
 void submenu(){ system("cls"); int opfun;
- TEXT_COLOR(hConsole,SUBTITLE_COLOR); cout<<"FUNCIONES TRIGONOMETRICAS\n\n";TEXT_COLOR(hConsole,MENU_COLOR);
+cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("FUNCIONES TRIGONOMETRICAS"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n";
  cout<<"Elejir una de las opciones"<<endl;
  cout<<"1- Funcion Seno."<<endl;
  cout<<"2- Funcion Coseno."<<endl;
@@ -279,7 +303,7 @@ void submenu(){ system("cls"); int opfun;
 
 //todos Este es el menu para las combinaiones y permutaciones
 void combandpermenu(){system("cls"); int opcomb;
- TEXT_COLOR(hConsole,SUBTITLE_COLOR); cout<<"COMBINACIONES Y PERMUTACIONES\n\n";TEXT_COLOR(hConsole,MENU_COLOR);
+ cout<<"\t\t\t\t"; TEXT_COLOR(hConsole,4); cout<<"-----> "; TEXT_COLOR(hConsole,SUBTITLE_COLOR); printf("COMBINACIONES Y PERMUTACIONES"); TEXT_COLOR(hConsole,4); cout<<" <-----"; TEXT_COLOR(hConsole,MENU_COLOR); cout<<"\n\n";
  cout<<"Elejir una de las opciones"<<endl;
  cout<<"1- Combinacion"<<endl;
  cout<<"2- Permutacion"<<endl;
@@ -342,8 +366,10 @@ CONFIG.write((char *)&MENU_COLOR,sizeof(MENU_COLOR));
 CONFIG.write((char *)&ERROR_MESSAGE,sizeof(ERROR_MESSAGE));
 CONFIG.write((char *)&RESULT_INMENU,sizeof(RESULT_INMENU));
 CONFIG.write((char *)&QUEST_NUMBER,sizeof(QUEST_NUMBER));
+CONFIG.write((char *)&TITLE,sizeof(TITLE));
+CONFIG.write((char *)&TITLE_DOWN,sizeof(TITLE_DOWN));
 CONFIG.write((char *)&readsave,sizeof(readsave));
-CONFIG.close();
+CONFIG.close();TEXT_COLOR(hConsole,10); cout<<"GUARDADO COMPLETADO\n"<<endl;
 system("pause"); main();}
 
 //* Sistema de cargado de la configuracion.
@@ -358,6 +384,8 @@ CONFIG.read((char *)&MENU_COLOR,sizeof(MENU_COLOR));
 CONFIG.read((char *)&ERROR_MESSAGE,sizeof(ERROR_MESSAGE));
 CONFIG.read((char *)&RESULT_INMENU,sizeof(RESULT_INMENU));
 CONFIG.read((char *)&QUEST_NUMBER,sizeof(QUEST_NUMBER));
+CONFIG.read((char *)&TITLE,sizeof(TITLE));
+CONFIG.read((char *)&TITLE_DOWN,sizeof(TITLE_DOWN));
 CONFIG.read((char *)&readsave,sizeof(readsave));
 CONFIG.close();readsave = 0;
 TEXT_COLOR(hConsole,10); cout<<"CARGA DE CONFIGURACION EXITOSA."<<endl; TEXT_COLOR(hConsole,MENU_COLOR);
